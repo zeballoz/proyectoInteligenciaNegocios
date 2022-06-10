@@ -3,6 +3,8 @@ import json
 import numpy as np
 import boto3
 import pandas as pd
+import requests
+
 
 
 def autentificacion():
@@ -59,6 +61,7 @@ def cargaData():
 
 def lambda_handler(event, context):
     cargaData()
+    requests.get('https://e6nvl4vaw9.execute-api.us-east-1.amazonaws.com/default/tranformacion')
     return {
         'statusCode': 200,
         'body': json.dumps('se ha realizado la extraccion correctamente !!')

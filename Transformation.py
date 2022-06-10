@@ -27,6 +27,9 @@ def bajarArchivo():
     print(list[1])
 
 def lambda_handler(event, context):
+    requests.get('https://e6nvl4vaw9.execute-api.us-east-1.amazonaws.com/default/tranformacion')
+
+
     return {
         'statusCode': 200,
         'body': json.dumps(bajarArchivo())

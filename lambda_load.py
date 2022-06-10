@@ -52,5 +52,5 @@ def lambda_handler(event, context):
 
     return {
         'statusCode': 200,
-        'body': json.dumps('Carga de datos finalizada !!')
+        'body': json.dumps('Carga de datos finalizada, proceso acabado !!')
     }
