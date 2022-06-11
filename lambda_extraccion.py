@@ -3,8 +3,8 @@ import json
 import numpy as np
 import boto3
 import pandas as pd
+from datetime import datetime
 import requests
-
 
 
 def autentificacion():
@@ -25,7 +25,6 @@ def autentificacion():
     return api
 
 
-
 def extraccionDatos():
     api = autentificacion()
     dataFinal = api.search_tweets('elecciones')
@@ -37,12 +36,11 @@ def extraccionDatos():
     return dataFinal
 
 
-
-
 def cargaData():
     dataFinal = extraccionDatos()
-    #Se crea una lista y de esta forma transformarla a .json
+    # Se crea una lista y de esta forma transformarla a .json
     lista = []
+    lista.append(str(datetime.today()))
 
     for i in range(len(dataFinal)):
         lista.append(dataFinal[i]._json)
@@ -53,10 +51,9 @@ def cargaData():
     bucket = 'biproyecto'
     objeto = 'tweets/'
 
-    fileName = objeto + 'CID-12223' + '.json'
+    fileName = objeto + 'CD' + '.json'
 
     s3.put_object(Bucket=bucket, Key=fileName, Body=jsonFinal)
-
 
 
 def lambda_handler(event, context):
